@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://localhost/soap"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             name="HolaMundo"
+             targetNamespace="http://localhost/soap">
+    <!-- Definir mensajes -->
+    <message name="saludoRequest">
+        <part name="parameters" element="xsd:string"/>
+    </message>
+    <message name="saludoResponse">
+        <part name="parameters" element="xsd:string"/>
+    </message>
+
+    <!-- Definir puerto -->
+    <portType name="HolaMundoPortType">
+        <operation name="saludoSoap">
+            <input message="tns:saludoRequest"/>
+            <output message="tns:saludoResponse"/>
+        </operation>
+    </portType>
+
+    <!-- Definir binding -->
+    <binding name="HolaMundoBinding" type="tns:HolaMundoPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="saludoSoap">
+            <soap:operation soapAction="urn:saludoSoap"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <!-- Definir servicio -->
+    <service name="HolaMundoService">
+        <port name="HolaMundoPort" binding="tns:HolaMundoBinding">
+            <soap:address location="http://localhost:8080/soap/server.wsdl"/>
+        </port>
+    </service>
+</definitions>
