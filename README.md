@@ -4,7 +4,7 @@ This is a Php project that displays Hello World message from Soap using Soap arc
 
 ## Technologies used
 
-- Python
+- Php
 
 ## Installation
 
